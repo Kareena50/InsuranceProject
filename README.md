@@ -46,7 +46,8 @@ network of providers such as medical (hospital & clinics) and pharmacy instituti
 country. Their providers are meticulously chosen for their service quality and commitment to 
 serving their insured students. When a student is in-need of medical care or pharmacy drugs, the 
 student’s coverage is verified by the provider. After the coverage is confirmed and the student 
-has received the necessary services, the provider submits the insurance claims for reimbursement to ScholaSure. If the student had obtained the services without the coverage verification or had 
+has received the necessary services, the provider submits the insurance claims for reimbursement to ScholaSure. 
+If the student had obtained the services without the coverage verification or had 
 paid for a medical care out of pocket, the student is able to submit the insurance claim for 
 reimbursement only if the provider is in-network. Out-of-network provider’s claim applications 
 are not accepted by ScholaSure. ScholaSure’s team carefully reviews these claims, and eligible 
