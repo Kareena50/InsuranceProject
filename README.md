@@ -1,5 +1,7 @@
 # ScholarSure Database Consultation Project
 
+Created by Krina Gajjar
+
 I. Executive Summary
 
 The purpose of this paper is to analyze and upgrade ScholaSure, an insurance company in regards 
