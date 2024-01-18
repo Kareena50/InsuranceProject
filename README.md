@@ -158,7 +158,7 @@ GROUP BY S.Gender, I.Insurance_Tier`
 
 Finance & Budgeting
 
-3. Total Revenue/Cost
+2. Total Revenue/Cost
    
 Description: The goal of this query is to find the total revenue generated from student 
 enrollment into the four tiers which is displayed under the Total_Insurance_Cost. To compare 
@@ -178,7 +178,7 @@ GROUP BY i.Insurance_Tier;`
 
 ![A-03](https://github.com/llamacorn118/InsuranceProject/assets/153336914/ba991bdb-2f76-4e9a-b295-b62acba1e350)
 
-4. Students whose total medical cost exceeds that of an average student
+3. Students whose total medical cost exceeds that of an average student
    
 Description: The query takes a look at each insurance policy and calculates the total medical 
 cost. A correlated subquery is then used to calculate the average total cost of each policy. This 
@@ -194,7 +194,7 @@ GROUP BY s.STU_ID, s.STU_FN, s.STU_LN, mr.insurance_policy_number;`
 
 ![A-04](https://github.com/llamacorn118/InsuranceProject/assets/153336914/a2303a73-c569-46af-ab7c-9cb0d281945f)
 
-5. Insurance policies that do not have a medical record
+4. Insurance policies that do not have a medical record
    
 Description: This query uses a left join to include any insurance policies that do not have a 
 medical record to show the list of students who have zero claims. 
@@ -210,7 +210,7 @@ where Medical_ID is null`
 
 Customer Service & Support
 
-6. Premium Insurance-Covered Pharmacies
+5. Premium Insurance-Covered Pharmacies
    
 Description: The below query retrieves pharmacy names, city and the insurance tier that were 
 used by the students. This identifies pharmacies that have specifically accepted a Gold and 
@@ -232,7 +232,7 @@ ORDER BY i.insurance_tier;`
 
 ![A-06](https://github.com/llamacorn118/InsuranceProject/assets/153336914/58d5f466-840e-4964-92d5-09d43098b984)
 
-9. Prescriptions that were ordered in the last quarter of the current year
+6. Prescriptions that were ordered in the last quarter of the current year
     
 Description: This table looks up recent prescriptions refills using the current financial quarter 
 as a reference. Joins are used in this query to display the student and pharmacy involved in the 
