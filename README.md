@@ -22,6 +22,7 @@ ScholaSure’s database is thoroughly analyzed, upgraded, and fine-tuned to enha
 and effectiveness in managing extensive data.
 
 II. Background 
+
 We have created our own business scenario along with the data that resembles an insurance 
 company for students. ScholaSure is an insurance provider dedicated to partnering with educational institutions across 
 the United States. They offer a comprehensive four-tier insurance solution exclusively tailored 
@@ -55,6 +56,7 @@ partnered educational institutions with a vast network of reputable healthcare a
 providers.
 
 IV. Project Scope & Objectives
+
 In order to create a proper DBMS we decided to use Microsoft Access. This allowed each 
 member to individually create the tables and easily modify them to our needs. Once all data 
 tables were created, Access was imported via Excel tool, which allowed easy implementation of 
@@ -67,9 +69,11 @@ students are not taking advantage of the plan. Looking through this data we can 
 conclusion of how the company can earn more profit.
 
 V. Business Rules Relevant to Data Model
+
 a. STUDENT and SCHOOL Relationship
 Each SCHOOL must have at least one STUDENT.
 Each STUDENT is enrolled in one and only one SCHOOL.
+
 This business rule enforces a one-to-many relationship between the entities SCHOOL and 
 STUDENT. It mandates that each SCHOOL entity must have at least one related STUDENT 
 entity, ensuring there are no schools without students. Additionally, it specifies that each 
@@ -79,6 +83,7 @@ where students have the option to enroll for insurance under only one school.
 b. STUDENT and INSURANCE Relationship
 Each STUDENT must have at least one INSURANCE. 
 Each INSURANCE must have one and only one STUDENT. 
+
 Students have only one insurance plan for a given time period (term) however, if they want to, 
 there is an option to enroll in upcoming terms. When that happens, a new insurance policy 
 number is generated for the student so that’s why there is one to many relationship between 
@@ -90,6 +95,7 @@ Each INSURANCE may have none or many MEDICAL RECORD.
 Each MEDICAL RECORD may have one and only one INSURANCE.
 Each MEDICAL provider may have many MEDICAL RECORD or none.
 Each MEDICAL RECORD may have one and only one MEDICAL.
+
 Here, a many-to-many relationship is resolved using MEDICAL RECORD as an associative 
 entity. This relationship exists when the medical provider (hospital, clinic etc) files a claim on 
 behalf of the student after receiving the medical services, meaning the application is received 
@@ -104,6 +110,7 @@ An INSURANCE may have many Prescription or none.
 A Prescription will work with one and only one INSURANCE.
 A PHARMACY may file many Prescription or none. 
 Each Prescription must have one and only one PHARMACY.
+
 There is a many-to-many relationship between INSURANCE and PHARMACY, which is 
 resolved using the Prescription associative entity. Similar to the INSURANCE and MEDICAL 
 relationship, the insured students may or may not have a claim with the many pharmacy stores 
@@ -112,13 +119,16 @@ that are in Scholasure’s network.
 e. INSURANCE and TIER
 Each INSURANCE has one and only one Tier
 Each Tier must have at least one Insurance
+
 There is a mandatory one to many relationship between Insurance and Tier. Each insurance plan 
 for a student has only one type of tier which may be bronze, silver, gold or platinum. And, each 
 tier is at least enrolled by one student as per the ScholaSure, ensuring there is a necessity and 
 demand for each tier.
 
 VI. Data Model 
+
 A. ERD
+
 ![A-01](https://github.com/llamacorn118/InsuranceProject/assets/153336914/544d2bae-2161-47e9-94cb-046863824f76)
 
 VII. Queries
@@ -126,6 +136,7 @@ VII. Queries
 Marketing & Sales
 
 1. City Demographics
+   
 Description : This query is to show how many students in each area are spending more than the 
 average tuition of all the schools. This is to allow the Insurance company to know where they 
 should focus on selling their policies and be more profitable. 
@@ -137,6 +148,7 @@ WHERE S.School_ID = St.School_ID and Yearly_Tuition >=
 GROUP BY STU_CITY;`
 
 2. Gender Demographics
+   
 Description: This shows crucial information about the enrollment in each insurance tier and 
 also accounts for the enrollment figures of men and women. This can be helpful demographics 
 information for the marketing team to understand the target customer type. 
@@ -149,6 +161,7 @@ GROUP BY S.Gender, I.Insurance_Tier`
 Finance & Budgeting
 
 3. Total Revenue/Cost
+   
 Description: The goal of this query is to find the total revenue generated from student 
 enrollment into the four tiers which is displayed under the Total_Insurance_Cost. To compare 
 those results, the total_patient_cost shows the sum of medical bills that have been captured 
@@ -166,6 +179,7 @@ m.Insurance_policy_number
 GROUP BY i.Insurance_Tier;`
 
 4. Students whose total medical cost exceeds that of an average student
+   
 Description: The query takes a look at each insurance policy and calculates the total medical 
 cost. A correlated subquery is then used to calculate the average total cost of each policy. This 
 allows us to see which students are getting higher paid procedures done. The total cost is a 
@@ -182,6 +196,7 @@ med.insurance_policy_number)
 GROUP BY s.STU_ID, s.STU_FN, s.STU_LN, mr.insurance_policy_number;`
 
 5. Insurance policies that do not have a medical record
+   
 Description: This query uses a left join to include any insurance policies that do not have a 
 medical record, the where statement will then filter to only show those policies that do not have 
 a medical record. This gives the insurance company an idea of policies which they do not have 
@@ -198,6 +213,7 @@ where Medical_ID is null`
 Customer Service & Support
 
 6. Premium Insurance-Covered Pharmacies
+   
 Description: The below query retrieves pharmacy names, city and the insurance tier that were 
 used by the students. This identifies pharmacies that have specifically accepted a Gold and 
 Platinum type of insurance. From an operational perspective, this would be deemed vital 
@@ -217,6 +233,7 @@ and i.insurance_tier IN ('GOLD', 'PLATINUM')
 ORDER BY i.insurance_tier;`
 
 7. Highest Insurance tier customers
+   
 Description: This query is a modified version of the previous one. The hospital/clinic 
 (Medical_Name) was included with the help of two additional joins statements in the query. This 
 enables the insurance company to see which higher tier (i.e., Gold & Platinum) insurance policy 
@@ -239,7 +256,8 @@ and i.Insurance_policy_number = MR.Insurance_policy_number
 and MR.Medical_ID = M.Medical_ID
 and i.insurance_tier IN ('GOLD', 'PLATINUM');`
 
-8. Displaying overall insurance plan info relevant to the company. 
+8. Displaying overall insurance plan info relevant to the company.
+   
 Description: This query will show a short summary of the student’s plan. Since the student plan 
 is separated information is separated into different tables. Multi-join is used here to display the 
 essential policy information with aliases used to simplify the column names. This can be used 
@@ -254,6 +272,7 @@ and I.Insurance_Tier=T.Insurance_Tier
 order by Insurance_policy_number desc;`
 
 9. Prescriptions that were ordered in the last quarter of the current year
+    
 Description: This table looks up recent prescriptions refills using the current financial quarter 
 as a reference. Joins are used in this query to display the student and pharmacy involved in the 
 refill. This allows us to see more recent data on what pharmacy brands are preferred. Students 
